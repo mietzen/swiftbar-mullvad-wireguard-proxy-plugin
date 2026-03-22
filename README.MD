@@ -7,7 +7,7 @@
 
 # xbar Mullvad Wireguard SOCKS5 proxy switcher
 
-This [xbar](https://github.com/matryer/xbar) plugin let's you switch between Mullvad WireGuard proxies.
+This [SwiftBar](https://github.com/swiftbar/SwiftBar) plugin let's you switch between Mullvad WireGuard proxies.
 It is especially useful if you got a Mullvad configured on your router.
 
 ## Install
@@ -15,7 +15,7 @@ It is especially useful if you got a Mullvad configured on your router.
 Download the shell script:
 
 ```Shell
-wget -qo "~/Library/Application Support/xbar/plugins/mullvad-wireguard.1h.sh" https://raw.githubusercontent.com/mietzen/xbar-mullvad-wireguard-proxy-plugin/main/mullvad-wireguard.1h.sh
+wget -qo "~/.swiftbar/mullvad-wireguard.1h.sh" https://raw.githubusercontent.com/mietzen/xbar-mullvad-wireguard-proxy-plugin/main/mullvad-wireguard.1h.sh
 ```
 
 On the initial start the a `venv` will created and the remaining assets are loaded.
@@ -24,7 +24,7 @@ On the initial start the a `venv` will created and the remaining assets are load
 
 ![Demo GIF](assets/demo.gif "Demo Gif")
 
-It can also be used to set Proxy Auto-Config via a URL, you can either create a file in `~/Library/Application\ Support/xbar/plugins/mullvad-wireguard-proxy/.pac_url` with your URL or set the URL manually via system settings.
+It can also be used to set Proxy Auto-Config via a URL, you can either create a file in `~/.swiftbar/mullvad-wireguard-proxy/.pac_url` with your URL or set the URL manually via system settings.
 
 ![PAC Example](assets/pac-example.png "PAC Example")
 
@@ -40,7 +40,7 @@ localhost
 *.box
 ```
 
-You can also add additional bypass strings by `~/Library/Application\ Support/xbar/plugins/mullvad-wireguard-proxy/config.json` and also add custom proxies (e.g. local) SOCKS5 proxies:
+You can also add additional bypass strings by `~/.swiftbar/mullvad-wireguard-proxy/config.json` and also add custom proxies (e.g. local) SOCKS5 proxies:
 
 ```
 {

@@ -19,11 +19,11 @@ from io import StringIO
 def gen_xbar_shell_cmd(call) -> str:
     cmd = ''
     if call:
-        cmd = ' | terminal=false | refresh=true | '
         call_splited = shlex.split(call, posix=False)
-        cmd += 'shell=' + call_splited[0]
+        cmd += " | bash='" + call_splited[0] + "'"
         for j, y in enumerate(call_splited[1:], start=1):
             cmd += ' param{0}={1}'.format(j, y)
+        cmd += ' terminal=false refresh=true'
     return cmd.rstrip()
 
 
@@ -287,10 +287,10 @@ class MullvadSocksProxyMenu(metaclass=Singleton):
         if self._online and self._mullvad_api_reachable:
             if self._status['mullvad_exit_ip']:
                 fid.write(
-                    self._secure + " | font='FontAwesome5Free-Solid' | size=16 | trim=false | templateImage=" + self.mullvad_icon + '\n')
+                    self._secure + " | font='FontAwesome5Free-Solid' size=16 trim=false templateImage=" + self.mullvad_icon + '\n')
             else:
                 fid.write(
-                    self._not_secure + " | font='FontAwesome5Free-Solid' | size=16 | trim=false | templateImage=" + self.mullvad_icon + '\n')
+                    self._not_secure + " | font='FontAwesome5Free-Solid' size=16 trim=false templateImage=" + self.mullvad_icon + '\n')
             if self._status['mullvad_exit_ip']:
                 if 'wireguard' in self._status['mullvad_server_type'].lower():
                     if self._am_i_mullvad_reachable and self._status['mullvad_exit_ip'] and self._get_proxy_type() == 'SOCKS5':
@@ -376,11 +376,8 @@ class MullvadSocksProxyMenu(metaclass=Singleton):
                         fid.write('Custom Proxies' + '\n')
                         if 'custom_proxies' in self._custom_config:
                             for custom_proxy in self._custom_config['custom_proxies']:
-                                fid.write('--' +
+                                fid.write('-- ' +
                                     custom_proxy['name'] + self._call_self_cli('set_and_activate_socks_proxy', custom_proxy['host'], str(custom_proxy['port'])) + '\n')
-                    fid.write('---' + '\n')
-                    fid.write(
-                        'Open Mullvad VPN' + gen_xbar_shell_cmd("open -a 'Mullvad VPN'") + '\n')
                 else:
                     fid.write('---' + '\n')
                     fid.write(
@@ -390,9 +387,6 @@ class MullvadSocksProxyMenu(metaclass=Singleton):
                         fid.write('Proxy:		' + self._get_proxy_str() + '\n')
                         if self._get_proxy_type():
                             fid.write(self._deactivate_socks_proxy_str())
-                        fid.write('---' + '\n')
-                        fid.write(
-                            'Open Mullvad VPN' + gen_xbar_shell_cmd("open -a 'Mullvad VPN'") + '\n')
                     else:
                         fid.write('No Interface available' + '\n')
                     fid.write('---' + '\n')
@@ -451,12 +445,9 @@ class MullvadSocksProxyMenu(metaclass=Singleton):
                         for custom_proxy in self._custom_config['custom_proxies']:
                             fid.write('--' +
                                 custom_proxy['name'] + self._call_self_cli('set_and_activate_socks_proxy', custom_proxy['host'], str(custom_proxy['port'])) + '\n')
-                fid.write('---' + '\n')
-                fid.write(
-                    'Open Mullvad VPN' + gen_xbar_shell_cmd("open -a 'Mullvad VPN'") + '\n')
         else:
             fid.write(self._no_connection +
-                      " | font='FontAwesome5Free-Solid' | size=16 | trim=false | templateImage=" + self.mullvad_icon + '\n')
+                      " | font='FontAwesome5Free-Solid' size=16 trim=false templateImage=" + self.mullvad_icon + '\n')
             fid.write('---' + '\n')
             if not self._online:
                 fid.write('Offline' + '\n')
@@ -468,9 +459,6 @@ class MullvadSocksProxyMenu(metaclass=Singleton):
                 fid.write('Proxy:		' + self._get_proxy_str() + '\n')
                 if self._get_proxy_type():
                     fid.write(self._deactivate_socks_proxy_str())
-                fid.write('---' + '\n')
-                fid.write(
-                    'Open Mullvad VPN' + gen_xbar_shell_cmd("open -a 'Mullvad VPN'") + '\n')
             else:
                 fid.write('No Interface available' + '\n')
             fid.write('---' + '\n')
@@ -521,7 +509,7 @@ def main():
                 try:
                     mullvad_socks_proxy_menu.print_menu()
                 except Exception as exception:
-                    print('' + " | font='FontAwesome5Free-Solid' | size=16 | trim=false | templateImage=" +
+                    print('' + " | font='FontAwesome5Free-Solid' size=16 trim=false templateImage=" +
                           MullvadSocksProxyMenu.mullvad_icon)
                     print('---')
                     print('Error')
@@ -530,7 +518,7 @@ def main():
                     print('---')
                     print('Refresh now | refresh=true')
             else:
-                print('' + " | font='FontAwesome5Free-Solid' | size=16 | trim=false | templateImage=" +
+                print('' + " | font='FontAwesome5Free-Solid' size=16 trim=false templateImage=" +
                       MullvadSocksProxyMenu.mullvad_icon)
                 print('---')
                 print('Error')

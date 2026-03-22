@@ -4,12 +4,12 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>vpn.connectscript</string>
+    <string>app.swiftbar.update-mullvad-on-change</string>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/open</string>
         <string>--background</string>
-        <string>xbar://app.xbarapp.com/refreshPlugin?path=mullvad-wireguard.1h.sh</string>
+        <string>swiftbar://refreshplugin?name=mullvad-wireguard</string>
     </array>
     <key>WatchPaths</key>
     <array>
