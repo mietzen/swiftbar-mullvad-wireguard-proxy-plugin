@@ -5,10 +5,12 @@
 **All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this package are for identification purposes only. Use of these names,trademarks and brands does not imply endorsement.**
 
 
-# xbar Mullvad Wireguard SOCKS5 proxy switcher
+# SwiftBar Mullvad Wireguard SOCKS5 proxy switcher
 
 This [SwiftBar](https://github.com/swiftbar/SwiftBar) plugin let's you switch between Mullvad WireGuard proxies.
 It is especially useful if you got a Mullvad configured on your router.
+
+SwiftBar is a successor to [xbar](https://github.com/matryer/xbar) which this plugin was orginally wrote for.
 
 ## Install
 
