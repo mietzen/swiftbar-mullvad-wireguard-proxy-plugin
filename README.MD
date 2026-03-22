@@ -17,7 +17,8 @@ SwiftBar is a successor to [xbar](https://github.com/matryer/xbar) which this pl
 Download the shell script:
 
 ```Shell
-wget -qo "~/.swiftbar/mullvad-wireguard.1h.sh" https://raw.githubusercontent.com/mietzen/swiftbar-mullvad-wireguard-proxy-plugin/main/mullvad-wireguard.1h.sh
+mkdir -p ~/.swiftbar/mullvad-wireguard-proxy
+wget -qo "~/.swiftbar/mullvad-wireguard-proxy/mullvad-wireguard.1h.sh" https://raw.githubusercontent.com/mietzen/swiftbar-mullvad-wireguard-proxy-plugin/main/mullvad-wireguard.1h.sh
 ```
 
 On the initial start the a `venv` will created and the remaining assets are loaded.
